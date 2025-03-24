@@ -1,7 +1,428 @@
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  padding: 5px;
+  width: 100%;
+}
+
 .btn {
-  padding: 0.1em 0.2rem !important ;
+  width: 100%;
+  min-height: 60px;
+  padding: 5px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(45deg, #2c3e50, #34495e);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  color: #ecf0f1;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+  border-radius: 8px;
+}
+
+.btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn:hover:not(:disabled):before {
+  left: 100%;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+  background: linear-gradient(45deg, #c0392b, #e74c3c);
+}
+
+.btn.on-cooldown {
+  background: linear-gradient(145deg, #2c3e50, #34495e);
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.cooldown-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #3498db;
+  font-weight: bold;
+  border: 2px solid #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+  z-index: 2;
+}
+
+.btn.on-cooldown::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.btn.on-cooldown:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.btn .attack-name {
+  margin-bottom: 3px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+  font-size: 0.7rem;
+}
+
+.btn .attack-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  width: 100%;
+}
+
+.attack-stats span {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.btn i {
+  font-size: 0.8rem;
+  margin: 0 2px;
+}
+
+.btn span {
+  margin: 0 2px;
 }
 
 .fa-bomb {
   color: black;
+}
+
+.targeting-container {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.btn-target {
+  background: linear-gradient(45deg, #16a085, #2ecc71);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-target:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+}
+
+.btn-target:disabled {
+  background: linear-gradient(45deg, #7f8c8d, #95a5a6);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  grid-column: 1 / -1; /* Occupe toute la largeur */
+  background: linear-gradient(45deg, #e74c3c, #c0392b);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+}
+
+.btn-cancel:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styles spécifiques pour les types d'attaques */
+.btn[title*="feu"] i { color: #e74c3c; }
+.btn[title*="glace"] i { color: #3498db; }
+.btn[title*="soin"] i { color: #2ecc71; }
+.btn[title*="mana"] i { color: #9b59b6; }
+
+/* Styles pour les icônes spécifiques */
+.btn i.fa-fire-alt {
+  color: #3498db;
+}
+
+.btn i.fa-heart {
+  color: #e74c3c;
+}
+
+.btn i.damage-icon {
+  color: #f1c40f;
+}
+
+.btn i.mana-icon {
+  color: #9b59b6;
+}
+
+.targeting-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(32, 32, 32, 0.98), rgba(16, 16, 16, 0.99));
+  border-radius: 15px;
+  padding: 20px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.targeting-title {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.targeting-heroes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 15px;
+  margin-top: auto;
+}
+
+.hero-target {
+  min-height: 80px;
+  padding: 10px;
+  background: linear-gradient(145deg, #3a3a3a, #292929);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.hero-target:not(.disabled):hover {
+  transform: translateY(-2px);
+  background: linear-gradient(45deg, #2ecc71, #27ae60);
+  box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+.hero-info {
+  width: 100%;
+  text-align: center;
+}
+
+.hero-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 0.9rem;
+}
+
+.hero-stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hero-target.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+.btn-cancel {
+  width: calc(100% - 30px);
+  padding: 12px;
+  margin: 15px;
+  font-size: 1rem;
+  background: linear-gradient(145deg, #e74c3c, #c0392b);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Effet de restauration de mana */
+@keyframes manaRestore {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(52, 152, 219, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+  }
+}
+
+.mana-restore {
+  animation: manaRestore 1s ease-in-out;
+}
+
+/* Particule de mana */
+.particle-mana {
+  background: radial-gradient(circle at center, #3498db, transparent 70%);
+  box-shadow: 
+    0 0 10px #3498db,
+    0 0 20px #3498db,
+    0 0 30px #3498db;
+  opacity: 0.8;
+  filter: blur(1px);
+}
+
+/* Style pour le coût de mana */
+.mana-cost {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #3498db;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Effet quand le mana est insuffisant */
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.btn:disabled::after {
+  content: "Mana insuffisant";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: #e74c3c;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn:disabled:hover::after {
+  opacity: 1;
+}
+
+/* Animation pour la régénération de mana */
+@keyframes manaRegen {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+.mana-regen {
+  position: absolute;
+  color: #3498db;
+  font-size: 0.8rem;
+  animation: manaRegen 1s ease-out forwards;
+}
+
+.cooldown {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #3498db;
+  font-weight: bold;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  animation: cooldownPulse 2s infinite;
+}
+
+.cooldown i {
+  display: none; /* On cache l'icône pour n'afficher que le nombre */
+}
+
+/* Animation subtile pour le cooldown */
+@keyframes cooldownPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.cooldown-indicator {
+  animation: cooldownPulse 2s infinite;
 }

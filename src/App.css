@@ -2,6 +2,12 @@
 
 .App {
   text-align: center;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .fa-fire-alt {
@@ -422,7 +428,134 @@
 #testCarouselle {
   height: 100vh;
 }
+.card {
+  width: 100%;
+  min-width: 750px; /* Augmenté pour correspondre à la largeur souhaitée */
+  max-width: 500px;
+  margin: 0 auto;
+  height: auto;
+  min-height: 400px; /* Augmenté à 450px */
+  background: linear-gradient(135deg, rgba(32, 32, 32, 0.95), rgba(16, 16, 16, 0.98));
+  border: 2px solid #444;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
 
+.card-body {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.stats-container {
+  flex: 0 0 auto;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem; /* Augmenté la taille du titre */
+  margin-bottom: 1rem;
+  padding-bottom: 5px;
+  text-shadow: none; /* Supprimé le flou du texte */
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Ajustement des barres de progression */
+.progress {
+  height: 20px;
+  margin: 5px 0;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 boutons par ligne */
+  gap: 12px;
+  padding: 15px;
+  margin-top: auto;
+}
+
+.btn {
+  background: linear-gradient(145deg, #3a3a3a, #292929);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.btn i {
+  margin: 0 5px;
+}
+
+.btn-success {
+  background: linear-gradient(145deg, #3a3a3a, #292929);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Animation quand le joueur est touché */
+@keyframes hit {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.hit {
+  animation: hit 0.3s ease;
+}
+
+/* Barre de progression stylisée */
+.progress {
+  height: 25px;
+  margin: 10px 0;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Style pour l'icône des dégâts */
+.badge-danger {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  background-color: #ff3547;
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 .carousel-wrapper {
   position: relative;
   width: 70%;
@@ -507,4 +640,344 @@
 .carousel-wrapper .flickity-viewport,
 .carousel-wrapper .flickity-slider {
   overflow: visible;
+}
+
+/* Ajoutez ces styles à la fin du fichier App.css */
+
+.card {
+  background: linear-gradient(135deg, rgba(32, 32, 32, 0.9), rgba(16, 16, 16, 0.95));
+  border: 2px solid #444;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  margin: 15px;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  width: 280px; /* Taille fixe */
+  height: 380px; /* Taille fixe */
+}
+
+.card-body {
+  padding: 0.8rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stats-container {
+  flex: 0 0 auto;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 5px;
+}
+
+/* Ajustement des barres de progression */
+.progress {
+  height: 20px;
+  margin: 5px 0;
+}
+
+body {
+  background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+  background-attachment: fixed;
+  color: #ecf0f1;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.monster img {
+  filter: drop-shadow(0 0 20px rgba(255, 87, 34, 0.4));
+  transition: all 0.3s ease;
+}
+
+.monster img:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 30px rgba(255, 87, 34, 0.6));
+}
+
+/* Ajuster la disposition des cartes des joueurs */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.col-sm-3 {
+  flex: 0 0 auto;
+  width: 800px; /* Augmenté significativement */
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%; /* Au lieu d'une largeur fixe */
+  min-width: 750px; /* Augmenté pour correspondre à la largeur souhaitée */
+  max-width: 500px;
+  margin: 0 auto;
+  height: auto; /* Au lieu d'une hauteur fixe */
+  min-height: 400px; /* Augmenté à 450px */
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, rgba(32, 32, 32, 0.95), rgba(16, 16, 16, 0.98));
+  border: 2px solid #444;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+  font-size: 1.5rem; /* Augmenté la taille du titre */
+  margin-bottom: 1rem;
+  padding-bottom: 5px;
+  text-shadow: none; /* Supprimé le flou du texte */
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 boutons par ligne */
+  gap: 12px;
+  padding: 15px;
+  margin-top: auto;
+}
+
+.stats-container {
+  margin-bottom: 20px;
+}
+
+.turn-indicator {
+  margin: 10px 0 20px 0;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .col-sm-3 {
+    width: calc(50% - 30px); /* 2 cartes par ligne */
+  }
+}
+
+@media (max-width: 768px) {
+  .col-sm-3 {
+    width: calc(100% - 30px); /* 1 carte par ligne */
+  }
+}
+
+.active-player, .inactive-player {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  border: 2px solid #444 !important;
+  box-shadow: none !important;
+}
+
+.container-fluid {
+  padding: 0 30px;
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Animation pour le changement de tour */
+@keyframes turnChange {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.5); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.turn-change {
+  animation: turnChange 0.5s ease;
+  position: relative;
+}
+
+.turn-change::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #ffd700;
+  border-radius: 17px;
+  animation: borderPulse 1s infinite;
+}
+
+@keyframes borderPulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+
+.card.active-player {
+  animation: turnChange 0.5s ease-out;
+  box-shadow: 0 0 30px var(--accent-color, rgba(255, 215, 0, 0.5));
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.col-sm-3 {
+  animation: slideIn 0.3s ease-out;
+  width: 300px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Ajoutez un indicateur de tour */
+.turn-indicator {
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(45deg, #2c3e50, #3498db);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+@keyframes particleAnimation {
+  0% { transform: translate(0, 0); opacity: 1; }
+  100% { transform: translate(var(--endX), var(--endY)); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  pointer-events: none;
+  animation: particleAnimation 0.5s ease-out forwards;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+/* Styles spécifiques pour chaque type de particule */
+.particle-fire {
+  background: radial-gradient(circle at center, #ff4400, transparent 70%);
+  box-shadow: 0 0 10px #ff4400;
+}
+
+.particle-ice {
+  background: radial-gradient(circle at center, #00ffff, transparent 70%);
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.particle-holy {
+  background: radial-gradient(circle at center, #ffff00, transparent 70%);
+  box-shadow: 0 0 10px #ffff00;
+}
+
+.particle-dark {
+  background: radial-gradient(circle at center, #800080, transparent 70%);
+  box-shadow: 0 0 10px #800080;
+}
+
+/* Styles pour les effets des capacités */
+@keyframes manaRestore {
+  0% { filter: brightness(1) drop-shadow(0 0 0 rgba(52, 152, 219, 0)); }
+  50% { filter: brightness(1.5) drop-shadow(0 0 15px rgba(52, 152, 219, 0.8)); }
+  100% { filter: brightness(1) drop-shadow(0 0 0 rgba(52, 152, 219, 0)); }
+}
+
+.mana-restore {
+  animation: manaRestore 1s ease;
+}
+
+/* Nouveau système de particules */
+.particle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1000;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFly 1s ease-out forwards;
+}
+
+@keyframes particleFly {
+  0% {
+    transform: scale(0.5) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) translate(var(--endX), var(--endY));
+    opacity: 0;
+  }
+}
+
+.particle-fire {
+  width: 15px;
+  height: 15px;
+  background: #ff4400;
+  box-shadow: 
+    0 0 10px #ff4400,
+    0 0 20px #ff4400,
+    0 0 30px #ff4400,
+    0 0 40px #ff4400;
+  filter: blur(1px);
+}
+
+.particle-ice {
+  width: 12px;
+  height: 12px;
+  background: #00ffff;
+  box-shadow: 
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 30px #00ffff;
+  filter: blur(1px);
+}
+
+.particle-holy {
+  width: 14px;
+  height: 14px;
+  background: #ffd700;
+  box-shadow: 
+    0 0 10px #ffd700,
+    0 0 20px #ffd700,
+    0 0 30px #ffd700;
+  filter: blur(1px);
+}
+
+.particle-dark {
+  width: 13px;
+  height: 13px;
+  background: #800080;
+  box-shadow: 
+    0 0 10px #800080,
+    0 0 20px #800080,
+    0 0 30px #800080;
+  filter: blur(1px);
 }

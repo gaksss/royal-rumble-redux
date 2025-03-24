@@ -1,0 +1,107 @@
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 1.2em;
+}
+
+.alert-success {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border-color: #badbcc;
+}
+
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.game-end-modal {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  max-width: 500px;
+  width: 90%;
+  animation: modalSlideIn 0.5s ease;
+}
+
+.victory-title {
+  color: #2ecc71;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.defeat-title {
+  color: #e74c3c;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+.game-end-modal p {
+  color: #ecf0f1;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.restart-button {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.restart-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  background: linear-gradient(45deg, #2980b9, #3498db);
+}
+
+.restart-button i {
+  margin-right: 10px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

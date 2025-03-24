@@ -2,13 +2,15 @@ import { useSelector } from "react-redux";
 import PlayerCard from "./PlayerCard";
 
 function PlayerList() {
-  const players = useSelector((state) => state.fight.players);
+  const activePlayerId = useSelector(state => state.fight.activePlayerId);
+  const players = useSelector(state => state.fight.players);
+  const activePlayer = players.find(p => p.id === activePlayerId);
 
   return (
     <div className="row">
-      {players.map((player) => (
-        <PlayerCard key={player.id} player={player} />
-      ))}
+      {activePlayer && (
+        <PlayerCard player={activePlayer} />
+      )}
     </div>
   );
 }
