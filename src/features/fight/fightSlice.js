@@ -22,9 +22,21 @@ export const fightSlice = createSlice({
   name: "fight",
   initialState,
   reducers: {
-    // Nous ajouterons nos actions ici plus tard
+    hitMonster: (state, action) => {
+      // Le payload de l'action contient la force de frappe
+      const damage = action.payload;
+
+      // Avec Redux Toolkit, nous pouvons "muter" l'état directement
+      // grâce à Immer qui fonctionne sous le capot
+      state.monster.pv = Math.max(0, state.monster.pv - damage);
+
+      // Pas besoin de return car Immer s'occupe de créer un nouvel état
+    },
   },
 });
+
+// Export des actions
+export const { hitMonster } = fightSlice.actions;
 
 // Nous exportons le reducer généré automatiquement
 export default fightSlice.reducer;

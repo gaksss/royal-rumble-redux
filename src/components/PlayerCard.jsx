@@ -1,6 +1,37 @@
 import ButtonCapacity from "./ButtonCapacity/ButtonCapacity";
 import ProgressBar from "./ProgressBar/ProgressBar";
 
+const attacks = [
+  {
+    name: "Frappe",
+    damage: 5,
+    manaCost: 5,
+    icon: "fa-bomb",
+    description: "Attaque basique"
+  },
+  {
+    name: "Éclair",
+    damage: 8,
+    manaCost: 8,
+    icon: "fa-bolt",
+    description: "Attaque électrique"
+  },
+  {
+    name: "Boule de feu",
+    damage: 12,
+    manaCost: 10,
+    icon: "fa-fire",
+    description: "Attaque de feu"
+  },
+  {
+    name: "Ult",
+    damage: 100,
+    manaCost: 20,
+    icon: "fa-plus",
+    description: "Restaure des PV"
+  }
+];
+
 function PlayerCard({ player }) {
   return (
     <div
@@ -27,10 +58,9 @@ function PlayerCard({ player }) {
         <span className="badge badge-danger ml-2 " id="degatSpanJ1"></span>
         <div className="row ">
           <div>
-            <ButtonCapacity player={player} />
-            <ButtonCapacity player={player} />
-            <ButtonCapacity player={player} />
-            <ButtonCapacity player={player} />
+            {attacks.map((attack, index) => (
+              <ButtonCapacity key={index} attack={attack} />
+            ))}
           </div>
         </div>
       </div>
